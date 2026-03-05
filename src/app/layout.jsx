@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Loyouts/Navbar";
 import Footer from "@/Components/Loyouts/Footer";
+import Authprovider from "@/Provider/Authprovider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,18 +27,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} ${poppins.variable} antialiased`}>
-        <nav>
-          <Navbar />
-        </nav>
+    <Authprovider>
+      <html lang="en">
+        <body className={`${poppins.variable} ${poppins.variable} antialiased`}>
+          <nav>
+            <Navbar />
+          </nav>
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <footer>
-          <Footer />
-        </footer>
-      </body>
-    </html>
+          <footer>
+            <Footer />
+          </footer>
+        </body>
+      </html>
+    </Authprovider>
   );
 }

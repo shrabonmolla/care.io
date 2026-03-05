@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import Link from "next/link";
+import Authbtn from "../Auth/Authbtn";
 
 export default function Navbar() {
   const list = (
@@ -52,9 +53,7 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{list}</ul>
       </div>
       <div className="navbar-end">
-        <Link href={"/login"} className="btn btn-primary btn-outline">
-          Login
-        </Link>
+        <Authbtn />
       </div>
     </div>
   );
