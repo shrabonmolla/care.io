@@ -15,7 +15,7 @@ export const authOptions = {
       //   password: { label: "Password", type: "password" },
       // },
       async authorize(credentials, req) {
-        console.log("credentailas", credentials);
+        // console.log("credentailas", credentials);
 
         const { email, password } = credentials;
 
@@ -24,7 +24,7 @@ export const authOptions = {
           password: password,
         });
 
-        console.log(result);
+        // console.log(result);
         return result;
       },
     }),
@@ -38,7 +38,7 @@ export const authOptions = {
 
   callbacks: {
     async signIn({ user, account, profile }) {
-      console.log("user", user);
+      // console.log("user", user);
 
       const isUserExist = await dbconnect(collection.USERS).findOne({
         email: user.email,
@@ -57,7 +57,7 @@ export const authOptions = {
       };
 
       const result = await dbconnect(collection.USERS).insertOne(newUser);
-      console.log("Inserted user:", result);
+      // console.log("Inserted user:", result);
       return true; // Do different verification for other providers that don't have `email_verified`
     },
   },
