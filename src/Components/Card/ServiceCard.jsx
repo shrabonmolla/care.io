@@ -2,14 +2,23 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
+import { compareSync } from "bcryptjs";
 
 export default function ServiceCard({ service }) {
-  const { service_name, category, price_per_hour, rating, description, image } =
-    service;
-
+  const {
+    service_name,
+    category,
+    price_per_hour,
+    rating,
+    description,
+    image,
+    _id,
+  } = service;
+  console.log(Array(6));
   return (
     <div className="card bg-base-100 shadow-lg hover:shadow-xl transition duration-300">
       <Image
+        // unoptimized
         src={image}
         alt={service_name}
         width={200}
@@ -37,8 +46,8 @@ export default function ServiceCard({ service }) {
         <div className="flex justify-between items-center mt-3">
           <p className="font-semibold text-secondary">${price_per_hour}/hour</p>
 
-          <Link href={`/service`}>
-            <button className="btn btn-primary btn-sm">Explore Details</button>
+          <Link href={`/allservices/${_id}`}>
+            <button className="btn btn-primary btn-sm">View Details</button>
           </Link>
         </div>
       </div>

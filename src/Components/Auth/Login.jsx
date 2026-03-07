@@ -4,11 +4,12 @@ import Link from "next/link";
 import SocialSignInbtn from "./SocialSignInbtn";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
   const params = useSearchParams();
+  const router = useRouter();
 
   async function handleLogin(data) {
     const result = await signIn("credentials", {
@@ -22,6 +23,7 @@ export default function Login() {
 
     if (result.ok) {
       alert("login successful");
+      router.push(result.url);
     } else {
       alert("failed to login . something went wrong");
     }

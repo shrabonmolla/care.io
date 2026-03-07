@@ -17,6 +17,9 @@ export default function Navbar() {
       <li>
         <Link href={"/contact"}>Contact</Link>
       </li>
+      <li>
+        <Link href={"/allservices"}>All Services</Link>
+      </li>
     </>
   );
   return (
