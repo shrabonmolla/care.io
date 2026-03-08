@@ -6,7 +6,7 @@ import React from "react";
 
 export default async function page() {
   const session = await getServerSession(authOptions);
-  const userEmail = session.user.email;
+  const userEmail = session?.user?.email;
   const mybookings = await myBookings(userEmail);
   console.log(mybookings);
   return (

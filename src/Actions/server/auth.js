@@ -24,7 +24,7 @@ export async function postUser(payload) {
   };
 
   const result = await dbconnect(collection.USERS).insertOne(newUser);
-  console.log(result);
+  // console.log(result);
   return {
     ...result,
     insertedId: result.insertedId?.toString(),

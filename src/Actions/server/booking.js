@@ -30,3 +30,34 @@ export async function deleteBookings(id, email) {
   const result = await bookingsColl.deleteOne(query);
   return result;
 }
+
+export async function allBookings() {
+  const result = await bookingsColl.find().toArray();
+  return result;
+}
+
+export async function updateBookingsStatus(id) {
+  const query = {};
+  query._id = new ObjectId(id);
+
+  const newDoc = {
+    $set: {
+      status: "confirmed",
+    },
+  };
+  const result = await bookingsColl.updateOne(query, newDoc);
+  return result;
+}
+
+export async function completedBookingsStatus(id) {
+  const query = {};
+  query._id = new ObjectId(id);
+
+  const newDoc = {
+    $set: {
+      status: "Completed",
+    },
+  };
+  const result = await bookingsColl.updateOne(query, newDoc);
+  return result;
+}

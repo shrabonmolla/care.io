@@ -1,24 +1,41 @@
 "use client";
-import { deleteBookings } from "@/Actions/server/booking";
-import { FaTrash } from "react-icons/fa";
+import {
+  completedBookingsStatus,
+  updateBookingsStatus,
+} from "@/Actions/server/booking";
+import { useRouter } from "next/navigation";
+import { GiConfirmed } from "react-icons/gi";
+import { IoIosCloudDone } from "react-icons/io";
 
-export default function MyBookingCard({ bookings }) {
-  async function handleDeleteBookings(id, email) {
-    const result = await deleteBookings(id, email);
-    alert("deleted");
-    console.log(result);
+export default function AllBookingCard({ bookings }) {
+  const router = useRouter();
+  async function handleUpdateStatus(id) {
+    const result = await updateBookingsStatus(id);
+    alert("confirm service");
+    if (result.matchedCount) {
+      router.refresh();
+    }
   }
+
+  async function handleCompleteStatus(id) {
+    const result = await completedBookingsStatus(id);
+    alert("completed service");
+    if (result.matchedCount) {
+      router.refresh();
+    }
+  }
+
   return (
     <div className="overflow-x-auto w-11/12 mx-auto py-6 h-screen">
       <table className="table table-zebra">
         <thead>
           <tr>
             <th>Service</th>
-            <th>Location</th>
-            <th>Duration</th>
+            <th>Name</th>
+            <th>Email</th>
             <th>Cost</th>
             <th>Status</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -40,12 +57,10 @@ export default function MyBookingCard({ bookings }) {
               </td>
 
               {/* Location */}
-              <td>
-                {booking.district}, {booking.division}
-              </td>
+              <td>{booking.name}</td>
 
               {/* Duration */}
-              <td>{booking.duration} hr</td>
+              <td>{booking.email} hr</td>
 
               {/* Cost */}
               <td>${booking.totalCost}</td>
@@ -64,14 +79,19 @@ export default function MyBookingCard({ bookings }) {
               </td>
 
               {/* Action */}
-              <td>
+              <td className="flex gap-4">
                 <button
-                  onClick={() =>
-                    handleDeleteBookings(booking._id, booking.email)
-                  }
+                  onClick={() => handleUpdateStatus(booking._id)}
                   className="btn btn-error btn-sm"
                 >
-                  <FaTrash />
+                  <GiConfirmed />
+                </button>
+
+                <button
+                  onClick={() => handleCompleteStatus(booking._id)}
+                  className="btn btn-error btn-sm"
+                >
+                  <IoIosCloudDone />
                 </button>
               </td>
             </tr>

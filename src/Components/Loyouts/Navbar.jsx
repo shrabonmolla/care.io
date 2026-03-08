@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import Authbtn from "../Auth/Authbtn";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/dashboard")) return <></>;
   const list = (
     <>
       <li>

@@ -1,7 +1,12 @@
+"use client";
+
 import React from "react";
 import Logo from "./Logo";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/dashboard")) return <></>;
   return (
     <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
       <aside>

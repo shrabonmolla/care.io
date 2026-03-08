@@ -19,13 +19,13 @@ export const authOptions = {
 
         const { email, password } = credentials;
 
-        const result = await loginUser({
+        const user = await loginUser({
           email: email,
           password: password,
         });
 
         // console.log(result);
-        return result;
+        return user;
       },
     }),
     GoogleProvider({
@@ -61,11 +61,29 @@ export const authOptions = {
       return true; // Do different verification for other providers that don't have `email_verified`
     },
 
-    async session({ session, token, user }) {
-      return session;
-    },
     async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        if (account.provider == "google") {
+          const dbUser = await dbconnect(collection.USERS).findOne({
+            email: user.email,
+          });
+          token.role = dbUser?.role;
+          token.email = dbUser?.email;
+        } else {
+          token.role = user?.role;
+          token.email = user?.email;
+        }
+      }
+
       return token;
+    },
+    async session({ session, token, user }) {
+      // console.log("session ====", session);
+      if (token) {
+        session.role = token?.role;
+        session.email = token?.email;
+      }
+      return session;
     },
   },
 };
