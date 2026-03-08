@@ -20,6 +20,9 @@ export default function Navbar() {
       <li>
         <Link href={"/allservices"}>All Services</Link>
       </li>
+      <li>
+        <Link href={"/mybookings"}>My Bookings</Link>
+      </li>
     </>
   );
   return (

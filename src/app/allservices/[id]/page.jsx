@@ -36,7 +36,7 @@ export default async function ServiceDetails({ params }) {
             ${price_per_hour}/hour
           </p>
 
-          <BookServicebtn />
+          <BookServicebtn service={service} />
         </div>
       </div>
     </div>

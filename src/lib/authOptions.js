@@ -60,5 +60,12 @@ export const authOptions = {
       // console.log("Inserted user:", result);
       return true; // Do different verification for other providers that don't have `email_verified`
     },
+
+    async session({ session, token, user }) {
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      return token;
+    },
   },
 };
