@@ -5,6 +5,7 @@ import SocialSignInbtn from "./SocialSignInbtn";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -22,10 +23,10 @@ export default function Login() {
     console.log(result);
 
     if (result.ok) {
-      alert("login successful");
+      toast.success("login successful");
       router.push(result.url);
     } else {
-      alert("failed to login . something went wrong");
+      toast.success("failed to login . something went wrong");
     }
   }
   return (

@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export default function BookServicebtn({ service }) {
   const { register, handleSubmit, watch } = useForm();
@@ -24,7 +25,7 @@ export default function BookServicebtn({ service }) {
   const session = useSession();
   const path = usePathname();
   const modalRef = useRef();
-  console.log(session.data.user.name);
+  console.log(session?.data?.user?.name);
 
   const islogin = session.status === "authenticated";
   function handleAdd2Cart() {
@@ -55,7 +56,7 @@ export default function BookServicebtn({ service }) {
     };
 
     const result = await addBookings(bookingData);
-    alert("successfuly booked this service");
+    toast.success("successfuly booked this service");
     router.push("/mybookings");
   }
   return (

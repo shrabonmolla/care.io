@@ -4,6 +4,7 @@ import Link from "next/link";
 import SocialSignInbtn from "./SocialSignInbtn";
 import { useForm } from "react-hook-form";
 import { postUser } from "@/Actions/server/auth";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
@@ -11,9 +12,9 @@ export default function Register() {
   async function handleRegister(data) {
     const result = await postUser(data);
     if (result.acknowledged) {
-      alert("registration succesful");
+      toast.success("registration succesful");
     } else {
-      alert("somethig went wrong");
+      toast.success("somethig went wrong");
     }
     console.log(result);
   }

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/Components/Loyouts/Navbar";
 import Footer from "@/Components/Loyouts/Footer";
 import Authprovider from "@/Provider/Authprovider";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
           </footer>
         </body>
       </html>
+      <Toaster />
     </Authprovider>
   );
 }

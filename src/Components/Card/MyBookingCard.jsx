@@ -1,11 +1,12 @@
 "use client";
 import { deleteBookings } from "@/Actions/server/booking";
+import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 
 export default function MyBookingCard({ bookings }) {
   async function handleDeleteBookings(id, email) {
     const result = await deleteBookings(id, email);
-    alert("deleted");
+    toast.success("deleted");
     console.log(result);
   }
   return (

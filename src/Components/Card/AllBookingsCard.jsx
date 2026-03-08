@@ -4,6 +4,7 @@ import {
   updateBookingsStatus,
 } from "@/Actions/server/booking";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { GiConfirmed } from "react-icons/gi";
 import { IoIosCloudDone } from "react-icons/io";
 
@@ -11,7 +12,7 @@ export default function AllBookingCard({ bookings }) {
   const router = useRouter();
   async function handleUpdateStatus(id) {
     const result = await updateBookingsStatus(id);
-    alert("confirm service");
+    toast.success("confirm service");
     if (result.matchedCount) {
       router.refresh();
     }
@@ -19,7 +20,7 @@ export default function AllBookingCard({ bookings }) {
 
   async function handleCompleteStatus(id) {
     const result = await completedBookingsStatus(id);
-    alert("completed service");
+    toast.success("completed service");
     if (result.matchedCount) {
       router.refresh();
     }
