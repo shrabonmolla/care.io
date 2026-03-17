@@ -1,10 +1,12 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 
 export default function Authbtn() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status == "loading") return <p>Loading form authbtn</p>;
 
   console.log(session);
 
@@ -12,6 +14,12 @@ export default function Authbtn() {
     return (
       <>
         Signed in as {session.user.email} <br />
+        {/* ✅ Show dashboard if admin */}
+        {session.role === "admin" && (
+          <Link href="/dashboard" className="btn btn-accent btn-outline mr-2">
+            Dashboard
+          </Link>
+        )}
         <button
           className="btn btn-primary btn-outline"
           onClick={() => signOut()}

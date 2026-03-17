@@ -4,13 +4,18 @@ import React from "react";
 
 export default async function page() {
   const allbookings = await allBookings();
+
+  const safeAllBookingsData = allbookings.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
   return (
     <div>
       <h2 className="text-3xl font-bold text-center mb-10 text-primary">
-        {allbookings.length} Booking are Pending
+        {safeAllBookingsData.length} Booking are Pending
       </h2>
 
-      <AllBookingCard bookings={allbookings} />
+      <AllBookingCard bookings={safeAllBookingsData} />
     </div>
   );
 }

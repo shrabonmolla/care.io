@@ -61,7 +61,7 @@ export default function AllBookingCard({ bookings }) {
               <td>{booking.name}</td>
 
               {/* Duration */}
-              <td>{booking.email} hr</td>
+              <td>{booking.email} </td>
 
               {/* Cost */}
               <td>${booking.totalCost}</td>

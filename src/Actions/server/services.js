@@ -14,5 +14,8 @@ export async function getAllServices() {
 
 export async function getService(id) {
   const result = await servicesColl.findOne({ _id: new ObjectId(id) });
-  return result;
+  return {
+    ...result,
+    _id: result._id.toString(),
+  };
 }

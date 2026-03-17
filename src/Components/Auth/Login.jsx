@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React from "react";
 import Link from "next/link";
 import SocialSignInbtn from "./SocialSignInbtn";
 import { useForm } from "react-hook-form";
@@ -30,7 +30,7 @@ export default function Login() {
     }
   }
   return (
-    <Suspense fallback={<div>Loading....</div>}>
+    <div>
       <div className="min-h-screen flex items-center justify-center bg-neutral px-4">
         <div className="card w-full max-w-md bg-base-100 shadow-2xl">
           <div className="card-body">
@@ -85,6 +85,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </Suspense>
+    </div>
   );
 }

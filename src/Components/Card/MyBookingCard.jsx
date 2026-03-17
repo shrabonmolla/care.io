@@ -1,13 +1,16 @@
 "use client";
 import { deleteBookings } from "@/Actions/server/booking";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 
 export default function MyBookingCard({ bookings }) {
+  const router = useRouter();
   async function handleDeleteBookings(id, email) {
     const result = await deleteBookings(id, email);
     toast.success("deleted");
-    console.log(result);
+    // console.log(result);
+    router.refresh();
   }
   return (
     <div className="overflow-x-auto w-11/12 mx-auto py-6 h-screen">
